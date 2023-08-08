@@ -23,7 +23,7 @@ SUPPORTED_DISTROS = {'debian': 'Debian', 'ubuntu': 'Ubuntu', 'centos': 'CentOS',
                      'red hat': 'RedHat', 'rocky': 'Rocky'}
 
 
-RE_DISTR = re.compile('(?P<os>(\w+(\s|\/)){1,}(\d+(\.)?){1,}\s[A-Za-z()]+)')
+RE_DISTR = re.compile('(?P<os>(\w+(\s|\/)){1,}(\d+(\.)?){1,}\s[ A-Za-z()]+)')
 
 
 def combineNameAndVersion(results):
