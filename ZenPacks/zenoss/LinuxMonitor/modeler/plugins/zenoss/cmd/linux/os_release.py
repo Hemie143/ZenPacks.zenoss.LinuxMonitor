@@ -19,7 +19,8 @@ from Products.DataCollector.plugins.CollectorPlugin import LinuxCommandPlugin
 from Products.DataCollector.plugins.DataMaps import MultiArgs
 
 
-SUPPORTED_DISTROS =  {'debian':'Debian', 'ubuntu':'Ubuntu','centos':'CentOS','redhat': 'RedHat', 'suse': 'Novell', 'red hat': 'RedHat'}
+SUPPORTED_DISTROS = {'debian': 'Debian', 'ubuntu': 'Ubuntu', 'centos': 'CentOS', 'redhat': 'RedHat', 'suse': 'Novell',
+                     'red hat': 'RedHat', 'rocky': 'Rocky'}
 
 
 RE_DISTR = re.compile('(?P<os>(\w+(\s|\/)){1,}(\d+(\.)?){1,}\s[A-Za-z()]+)')
@@ -59,7 +60,7 @@ def combineNameAndVersion(results):
     return lines
 
 
-def getOSModel(results):
+def getOSModel(results, log):
     """Get the OS Model name and version from the results.
 
     Args:
@@ -103,7 +104,7 @@ class os_release(LinuxCommandPlugin):
             "Processing the cat /etc/*-release info for device %s",
             device.id)
 
-        osModel = getOSModel(results) or "Unknown Linux"
+        osModel = getOSModel(results, log) or "Unknown Linux"
         osManufacturer = None
         for distro in SUPPORTED_DISTROS.keys():
             if distro in osModel.lower():
